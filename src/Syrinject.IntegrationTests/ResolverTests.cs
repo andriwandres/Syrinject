@@ -26,4 +26,17 @@ public sealed class ResolverTests
         service.Should().NotBeNull();
         service.Should().BeOfType<TestServiceWithoutDependencies>();
     }
+
+    [Fact]
+    public void Resolver_Should_Return_The_Same_Type_Given_A_Type_Instance_As_Opposed_To_A_Generic_Type()
+    {
+        _container.AddTransient<ITestServiceWithoutDependencies, TestServiceWithoutDependencies>();
+
+        ISyrinjectResolver resolver = _container.Build();
+
+        object serviceResolvedWithTypeInstance = resolver.Resolve(typeof(ITestServiceWithoutDependencies));
+
+        serviceResolvedWithTypeInstance.Should().NotBeNull();
+        serviceResolvedWithTypeInstance.Should().BeOfType<TestServiceWithoutDependencies>();
+    }
 }

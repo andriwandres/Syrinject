@@ -47,9 +47,9 @@ public sealed class ContainerExceptionTests
     [Fact]
     public void Container_Should_Throw_ArgumentException_When_An_Abstracted_Singleton_Service_Is_Registered_Twice()
     {
-        _container.AddTransient<ITestServiceWithoutDependencies, TestServiceWithoutDependencies>();
+        _container.AddSingleton<ITestServiceWithoutDependencies, TestServiceWithoutDependencies>();
 
-        Action action = () => _container.AddTransient<ITestServiceWithoutDependencies, TestServiceWithoutDependencies>();
+        Action action = () => _container.AddSingleton<ITestServiceWithoutDependencies, TestServiceWithoutDependencies>();
 
         action.Should().Throw<ArgumentException>();
     }
