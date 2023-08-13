@@ -9,8 +9,8 @@ namespace Syrinject.Benchmark.Benchmarks;
 [MemoryDiagnoser(displayGenColumns: false)]
 public class SyrinjectVsServiceCollection
 {
-    private ISyrinjectContainer _syrinjectContainer;
-    private IServiceCollection _serviceCollection;
+    private ISyrinjectContainer _syrinjectContainer = null!;
+    private IServiceCollection _serviceCollection = null!;
 
     [GlobalSetup]
     public void Setup()
