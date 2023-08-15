@@ -1,11 +1,10 @@
-﻿using Cake.Common.Build.AzurePipelines.Data;
-
-namespace Syrinject.Build.Constants;
+﻿namespace Syrinject.Build.Constants;
 
 internal static class SyrinjectTaskNames
 {
     public const string Default = "Default";
     public const string PullRequestBuild = "PullRequestBuild";
+    public const string ContinuousIntegrationBuild = "ContinuousIntegrationBuild";
 
     public const string Clean = "Clean";
     public const string CleanArtifacts = "CleanArtifacts";

@@ -21,3 +21,9 @@ public sealed class DefaultTask : AsyncFrostingTask<BuildContext>
 public sealed class PullRequestBuildTask : AsyncFrostingTask<BuildContext>
 {
 }
+
+[TaskName(SyrinjectTaskNames.ContinuousIntegrationBuild)]
+[IsDependentOn(typeof(TestTask))]
+public sealed class ContinuousIntegrationBuildTask : AsyncFrostingTask<BuildContext>
+{
+}
