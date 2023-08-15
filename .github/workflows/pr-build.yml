@@ -2,11 +2,12 @@ name: PR-Build
 
 on:
   pull_request:
-    branches: [ "main", "develop" ]
+    branches: [ "develop" ]
   
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: write-all
     
     steps:
     - name: Checkout Repository
@@ -20,3 +21,32 @@ jobs:
     - name: Build and Run Tests
       run: ./build.sh --target=PullRequestBuild
       shell: bash
+
+    - name: Generate Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1.3.0
+      with:
+        filename: /build/artifacts/testResults/coverlet/**/coverage.cobertura.xml
+        badge: true
+        fail_below_min: true
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: false
+        indicators: true
+        output: both
+        thresholds: '80 80'
+
+    - name: Add Code Coverage Comment
+      uses: marocchino/sticky-pull-request-comment@v2.7.0
+      if: github.event_name == 'pull_request'
+      with:
+        recreate: true
+        path: code-coverage-results.md
+
+    - name: Publish Code Coverage to Build Step Summary
+      run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
+
+    - name: Upload Coverage Report Artifact
+      uses: actions/upload-artifact@v3
+      with: 
+        name: CoverageReport
+        path: build/artifacts/testResults/codeCoverage
