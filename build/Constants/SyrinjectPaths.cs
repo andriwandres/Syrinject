@@ -8,5 +8,10 @@ internal static class SyrinjectPaths
     private const string SourceFolderName = "src";
     public const string SolutionFilePath = $"{SourceFolderName}/Syrinject.sln";
 
+    public const string TestResultsDirectoryName = "testResults";
+    public const string CodeCoverageReportDirectoryName = "codeCoverage";
+    public const string CoverletDirectoryName = "coverlet";
+    public const string CoverageSummaryFileName = "coverage.cobertura.xml";
+
     public const string NuGetPackageSource = "https://api.nuget.org/v3/index.json";
 }
