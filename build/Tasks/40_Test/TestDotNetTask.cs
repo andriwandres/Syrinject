@@ -32,8 +32,6 @@ public sealed class TestDotNetTask : AsyncFrostingTask<BuildContext>
             string artifactFileName = GetArtifactFileName(testProjectPath);
             string customArguments = BuildCustomArguments(artifactFileName, testContext);
 
-            context.Information("ArgumentCustomization: " + customArguments);
-
             DotNetTestSettings testSettings = new()
             {
                 Configuration = SyrinjectBuildConstants.BuildConfiguration,
